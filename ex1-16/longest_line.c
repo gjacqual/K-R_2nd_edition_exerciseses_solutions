@@ -1,6 +1,6 @@
 #include <stdio.h>
 
- #define MAXLINE 1000
+ #define MAXLINE 30
 
  int knr_getline(char line[], int maxline);
  void copy (char to[], char from[]);
@@ -8,20 +8,25 @@
  /* вывод самой длинной строки в потоке */
  int main()
  {
-	int len;	/* длина текущей строки */
-	int max;	/* текущая максимальня длина */
-	char line[MAXLINE];	/* текущая введенная строка */
-	char longest[MAXLINE]; /* the longest line entered */
-
-	max = 0;
-	while ((len = knr_getline(line, MAXLINE)) > 0)
-		if (len > max)
+	int len, max, temp_len;
+	char line[MAXLINE], longest[MAXLINE];
+	
+	len = max = 0;
+	while ((temp_len = knr_getline(line, MAXLINE)) > 0)
+	{
+		len = len + temp_len;
+		if (temp_len != MAXLINE - 1)
 		{
-			max = len;
-			copy(longest, line);
+			if (len > max)
+			{
+				max = len;
+				copy(longest, line);
+			}
+			len = 0;
 		}
-	if (max > 0) /* была не пустая строка */
-		printf("Longest string is: %s", longest);
+	}
+	if (max > 0)
+		printf("Longest string length is: %i\n",  max);
 	return (0);
  }
 

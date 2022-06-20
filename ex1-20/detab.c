@@ -15,7 +15,7 @@
 #define TAB		'\t'
 
 int knr_getline(char line[], int maxline);
- void detab(char tab_line[], char detab_line[]);
+void detab(char tab_line[], char detab_line[]);
 
  /* clang -Wall -Wextra -Werror -o detab detab.c */
  /* Usage: ./detab < text_with_tabs.txt > text_detab.txt */

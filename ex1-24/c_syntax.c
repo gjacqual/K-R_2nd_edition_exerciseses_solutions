@@ -4,7 +4,7 @@
  * Created on Mon Jun 20 2022
  * 
  * clang -Wall -Wextra -Werror -o c_syntax c_syntax.c
- * Usage: ./c_syntax < example.c > example_after.c
+ * Usage: ./c_syntax < example.c
  * 
  * Max Filin
  * max@maxfilin.ru

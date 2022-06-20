@@ -1,11 +1,16 @@
 #include <stdio.h>
 
-#define TABSIZE 4
+#define TABSIZE 8
 #define MAXLINE 1000
+#define SPACE 	' '
+#define TAB		'\t'
 
 int knr_getline(char line[], int maxline);
+ void detab(char tab_line[], char detab_line[]);
 
  /* print all input lines that are longer than 80 characters */
+ /* clang -Wall -Wextra -Werror -o detab detab.c */
+ /* Usage: ./detab < text_with_tabs.txt > text_detab.txt */
  int main()
  {
 	char line[MAXLINE], detab_line[MAXLINE];
@@ -37,7 +42,24 @@ int knr_getline(char line[], int maxline);
 
  void detab(char tab_line[], char detab_line[])
  {
+	int i, j, n;
 
+	i = 0;
+	j = 0;
+	while ((detab_line[j] = tab_line[i]) != '\0')
+	{
+		if (detab_line[j] == TAB)
+			{
+				n = 0;	
+				while (n < TABSIZE)
+				{
+					detab_line[j] = SPACE;
+					++n;
+					++j;
+				}
+			}
+		else
+			++j;
+		++i;
+	}
  }
-
- int tabpos()

@@ -1,3 +1,12 @@
+/*
+ * K&R ex1-20
+ * Created on Mon Jun 20 2022
+ *
+ * Max Filin
+ * max@maxfilin.ru
+ */
+
+
 #include <stdio.h>
 
 #define TABSIZE 8
@@ -8,7 +17,6 @@
 int knr_getline(char line[], int maxline);
  void detab(char tab_line[], char detab_line[]);
 
- /* print all input lines that are longer than 80 characters */
  /* clang -Wall -Wextra -Werror -o detab detab.c */
  /* Usage: ./detab < text_with_tabs.txt > text_detab.txt */
  int main()

@@ -1,1 +1,3 @@
 Text		with 			 tabs				end .
+Text	with 			 tabs				end.
+Text	with 			 tabs							end			.

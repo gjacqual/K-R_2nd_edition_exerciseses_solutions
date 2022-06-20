@@ -8,6 +8,9 @@
 #define SPACE 	' '
 #define TAB		'\t'
 #define COMMENT	"/* test comment */"
+#define COMMENT2	'/* test comment */'
+#define COMMENT3	"''"
+#define COMMENT4	'/* test comment */"
 
 int knr_getline(char line[], int maxline);
 void string_format(char to[], char from[], int n);

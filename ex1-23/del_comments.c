@@ -12,10 +12,9 @@
 
 #include <stdio.h>
 
-#define MAXLINE 20000
-#define SPACE 	' '
-#define TAB		'\t'
-#define NEWLINE	'\n'
+#define MAXLINE 		6000
+#define SINGLE_QUOTE 	'\''
+#define DOUBLE_QUOTE 	'"'
 
 void del_comments(char to[], char from[]);
 int gettext(char s[], int lim);
@@ -29,7 +28,6 @@ int main()
 	{
 		del_comments(format_line, line);
 		printf("%s", format_line);
-		// printf("%i", comment_flag);
 	}
 	return (0);
 }
@@ -46,12 +44,12 @@ int gettext(char s[], int lim)
 
 void del_comments(char to[], char from[])
 {
-	int i, j, comment_flag, quote_flag;
+	int i, j, comment_flag, quote_flag, squote_flag;
 
-	i = j = comment_flag = quote_flag = 0;
+	i = j = comment_flag = quote_flag = squote_flag = 0;
 	while ((to[j] = from[i]) != '\0')
 	{			
-		if (to[j] == '"')
+		if (to[j] == SINGLE_QUOTE || to[j] == DOUBLE_QUOTE)
 		{
 			if (quote_flag == 0)
 				quote_flag = 1;
@@ -59,12 +57,14 @@ void del_comments(char to[], char from[])
 				quote_flag = 0;
 			++j;
 		}
-		else if (comment_flag == 0 && quote_flag == 0 && to[j] == '/' && from[i + 1] == '*')
+		else if (comment_flag == 0 && quote_flag == 0 \
+		&& to[j] == '/' && from[i + 1] == '*')
 		{
 			comment_flag = 1;
 			++i;
 		}
-		else if (comment_flag == 1 && quote_flag == 0 && to[j] == '*' && from[i + 1] == '/')
+		else if (comment_flag == 1 && quote_flag == 0 \
+		&& to[j] == '*' && from[i + 1] == '/')
 		{
 			comment_flag = 0;
 			++i;

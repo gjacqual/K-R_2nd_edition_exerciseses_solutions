@@ -80,6 +80,8 @@ int main(void)
 	}	
 	max_float = mantissa * pow(2, 127);
 	printf("float 		-> min: %e, 		max:%e\n", min_float, max_float);
+	// Изучить вещественные числа в Си и определение их границ;
+	
 	// printf("double		-> min: %lf,		max:%e\n", DBL_MIN, DBL_MAX);
 	// printf("long double	-> min: %Le,		max:%Le\n", LDBL_MIN, LDBL_MAX);
 	return (0);

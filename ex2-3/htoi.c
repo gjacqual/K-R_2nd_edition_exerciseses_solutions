@@ -23,6 +23,9 @@ int	main(void)
 
 	number = htoi(s);
 	printf("Number: %d\n", number);
+
+	printf("Number2: %d\n", htoi("0Xac1ffF"));
+	printf("Number Error Check: %d\n", htoi("0Xac0x1ffF"));
 	return (0);
 }
 

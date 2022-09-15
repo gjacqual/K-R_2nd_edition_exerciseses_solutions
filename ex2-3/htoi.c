@@ -12,13 +12,14 @@
  */
 
 #include <stdio.h>
+#include <ctype.h>
 
 int htoi(char s[]);
 
 int	main(void)
 {
 	int		number;
-	char	s[] = "FFFAAA1";
+	char	s[] = "0XFFFfff";
 
 	number = htoi(s);
 	printf("Number: %d\n", number);
@@ -27,12 +28,30 @@ int	main(void)
 
 int	htoi(char s[])
 {
-	int i = 0;
-	int number = 0; 
+	int i;
+	int j;
+	int number = 0;
+	char hex[] = "0123456789ABCDEF"; 
 
+	i = 0;
+	if (s[i] == '0' && toupper(s[i+1]) == 'X')
+		i = 2;
 	while(s[i] != '\0')
-	{
-		number = number * 16 + s[i];
+	{	
+		j = 0;
+		while(hex[j] != '\0')
+		{
+			if (hex[j] == toupper(s[i]))
+				break ;
+			if (j == 15 && toupper(s[i]) != 'F') 
+			{
+				printf("Error: incorect input!\n");
+				return -1;
+			}
+			j++;
+		}
+		
+		number = number * 16 + j;
 		i++;
 	}
 	return (number);

@@ -53,8 +53,8 @@ int main(void)
 	printf("Position: 76543210\n");
 	print_bits(x);
 	print_bits(getbits(x,p,n));
+
 	/*test 1 */
-	
 	x = 0b11110000;
 	y = 0b11111111;
 	p = 2;

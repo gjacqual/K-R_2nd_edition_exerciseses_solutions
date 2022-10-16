@@ -19,9 +19,7 @@ void	squeeze(char s1[], char s2[])
 				s1[j++] = s1[i];
 		s1[j] = '\0';
 	}
-
 }
-
 
 int	main(void)
 {	
@@ -31,6 +29,5 @@ int	main(void)
 	printf("%s\n", string1);
 	squeeze(string1, string2);
 	printf("%s\n", string1);
-
 	return (1);
 }

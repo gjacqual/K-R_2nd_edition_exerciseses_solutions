@@ -8,7 +8,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/ex2-9/bitcount",
+			"program": "${workspaceFolder}/ex03-01/binsearch",
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

@@ -38,7 +38,7 @@ void itob(int n, char s[], int b)
 	char symbols[] = "0123456789ABCDEF";
 
 
-	if (s == NULL || b < 2)
+	if (s == NULL || b < 2 || b > 16)
 	{
 		printf("Error: Incorect arguments\n");
 		return ;

@@ -15,6 +15,9 @@
 #include <stdio.h>
 #include <stdlib.h> /* для объявления atof()*/
 #include <ctype.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <math.h>
 
 #define MAXOP	100 /* максимальный размер операнда или знака */
 #define NUMBER	'0' /* сигнал, что обнаружено число */
@@ -32,12 +35,13 @@ void push(double);
 double pop(void);
 int 	getch(void);
 void	ungetch(int);
+bool isint(double d);
 
 /* Калькулятор с обратной польской записью */
 int main(void)
 {
 	int type;
-	double op2;
+	double op2, op;
 	char s[MAXOP];
 
 	while ((type = getop(s)) != EOF)
@@ -59,8 +63,22 @@ int main(void)
 				break;
 			case '/':
 				op2 = pop();
+
 				if (op2 != 0.0)
 					push(pop() / op2);
+				else
+					printf("error: zero devisor\n");
+				break;
+			case '%':
+				op2 = pop();
+				op = pop();
+				// if (!isint(op2) || !isint(op))
+				// {
+				// 	printf("error: dividing by the remainder can only be integers\n");
+				// 	break;
+				// }
+				if (op2 != 0.0)
+					push(fmod(op, op2));
 				else
 					printf("error: zero devisor\n");
 				break;
@@ -68,11 +86,17 @@ int main(void)
 				printf("\t%.8g\n", pop());
 				break;
 			default:
-				printf("error: unknofn command %s\n", s);
+				printf("error: unknown command %s\n", s);
 				break;
 		} 
 	}
 	return (0);
+}
+
+
+bool isint(double d) 
+{
+	return d == (int64_t)d;
 }
 
 /* push: помещает число f в стек операндов */
@@ -99,12 +123,20 @@ double pop(void)
 int getop(char s[])
 {
 	int i, c;
+	
 	while ((s[0] = c = getch()) == ' ' || c == '\t')
 		;
 	s[1] = '\0';
-	if (!isdigit(c) && c != '.')
+	if (!isdigit(c) && c != '.' && c != '-')
+	{
+		// printf("getop: not a number\n");
 		return c; /* не число */
+	}
 	i = 0;
+	if (c == '-')
+	{
+		s[++i] = c = getch(); /* для обработки отрицательных чисел */
+	}
 	if (isdigit(c)) /* накопление целой части */
 		while (isdigit(s[++i] = c = getch()))
 			;

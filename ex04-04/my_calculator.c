@@ -4,6 +4,15 @@
  * clang -Wall -Wextra -Werror -o my_calculator my_calculator.c -lm
  * 
  * run: ./my_calculator
+ * 
+ * USAGE:
+ * 
+ * P - print all stack
+ * T - print top
+ * C - clear stack
+ * D - duplicate element
+ * S - swap the top two elements
+ * 
  *
  * Exercise 4-4 Add commands to print the top element of the stack without 
  * popping, to duplicate it, and to swap the top two elements. Add a command to 

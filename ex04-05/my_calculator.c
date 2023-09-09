@@ -12,12 +12,16 @@
  * C - clear stack
  * D - duplicate element
  * S - swap the top two elements
+ * s - sin
+ * e - exp
+ * ^ - pow
+ * Q - quit the program
  * 
  *
  * Exercise 4-5 Add access to library functions like sin , exp , and pow . 
  * See <math.h> in Appendix B, Section 4.
  *
- * Max Filin 2022
+ * Max Filin 2023
  */
 
 #include <stdio.h>
@@ -49,6 +53,7 @@ void	print_stack(void);
 void	clear_stack(void);
 void	doublicate_element(double f);
 void	swap_elements(void);
+
 
 /* Калькулятор с обратной польской записью */
 int	main(void)
@@ -111,12 +116,37 @@ int	main(void)
 				command_flag = 1;
 				print_stack();
 				break;
+            case 's':
+                if (sp < 1)
+                    printf("error: less then 1 numbers in stack\n");
+                else
+                    push(sin(pop()));
+                break;
+            case 'e':
+                if (sp < 1)
+                    printf("error: less then 1 numbers in stack\n");
+                else
+                    push(exp(pop()));
+                break;
+            case '^':
+                if (sp < 2)
+                    printf("error: less then 2 numbers in stack\n");
+                else {
+                    op = pop();
+                    op2 = pop();
+                    push(pow(op, op2));
+                }
+                break;
 			case '\n':
 				if (!command_flag)
 					printf("\t%.8g\n", pop());
 				else 
 					command_flag = 0;
 				break;
+            case 'Q':
+                printf("Good Bye!!!\n");
+                exit(EXIT_SUCCESS);
+                break;
 			default:
 				printf("error: unknown command %s\n", s);
 				break;
@@ -126,10 +156,7 @@ int	main(void)
 	return (0);
 }
 
-void execute_math(char[] name)
-{
-	
-}
+
 
 void swap_elements(void)
 {
